@@ -6,7 +6,8 @@ using System;
 using System.Linq;
 using System.Web;
 
-public const string SHORTENER_URL = "https://update.me/";
+public static readonly string SHORTENER_URL = System.Environment.GetEnvironmentVariable("SHORTENER_URL");
+public static readonly string UTM_SOURCE = System.Environment.GetEnvironmentVariable("UTM_SOURCE");
 public static readonly string Alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
 public static readonly int Base = Alphabet.Length;
 

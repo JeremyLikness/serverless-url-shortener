@@ -12,7 +12,7 @@ public static TelemetryClient telemetry = new TelemetryClient()
     InstrumentationKey = System.Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY")
 };
 
-public const string FALLBACK_URL = "https://blog.jeremylikness.com/?utm_source=jeliknes&utm_medium=redirect&utm_campaign=jlik_me";
+public static readonly string FALLBACK_URL = System.Environment.GetEnvironmentVariable("FALLBACK_URL");
 
 public static HttpResponseMessage Run(HttpRequestMessage req, CloudTable inputTable, string shortUrl, TraceWriter log)
 {
