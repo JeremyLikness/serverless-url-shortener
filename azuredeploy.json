@@ -101,7 +101,7 @@
                         },
                       {
                         "name": "SHORTENER_URL",
-                        "value": "[toLower(parameters('shortenerUrl'))]"
+                        "value": "[toLower(variables('shortenerUrl'))]"
                       },
                       {
                         "name": "UTM_SOURCE", 
