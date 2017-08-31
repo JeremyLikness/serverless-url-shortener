@@ -1,0 +1,17 @@
+{
+    "$schema": "http://json.schemastore.org/proxies",
+    "proxies": {
+        "Domain Redirect": {
+            "matchCondition": {
+                "route": "/{*shortUrl}"
+            },
+            "backendUri": "http://hostname.azurewebsites.net/api/UrlRedirect/{shortUrl}"
+        },
+        "Api": {
+            "matchCondition": {
+                "route": "/api/{*path}"
+            },
+            "backendUri": "http://hostname.azurewebsites.net/api/{path}"
+        }
+    }
+}

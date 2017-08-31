@@ -1,0 +1,33 @@
+{
+  "bindings": [
+    {
+      "type": "table",
+      "name": "keyTable",
+      "tableName": "urls",
+      "partitionKey": "1",
+      "rowKey": "KEY",
+      "take": 1,
+      "connection": "AzureWebJobsStorage",
+      "direction": "in"
+    },
+    {
+      "type": "table",
+      "name": "tableOut",
+      "tableName": "urls",
+      "connection": "AzureWebJobsStorage",
+      "direction": "out"
+    },
+    {
+      "type": "httpTrigger",
+      "name": "req",
+      "authLevel": "function",
+      "direction": "in"
+    },
+    {
+      "type": "http",
+      "name": "$return",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
