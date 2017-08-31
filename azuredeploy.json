@@ -37,7 +37,7 @@
         }
     },
     "variables": {
-        "shortenerUrl": "[concat(parameters('appName'), '.azurewebsites.net/api/UrlRedirect/']",
+        "shortenerUrl": "[concat(parameters('appName'), '.azurewebsites.net/api/UrlRedirect/')]",
         "functionAppName": "[parameters('appName')]",
         "hostingPlanName": "[parameters('appName')]",
         "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'azfunctions')]",
