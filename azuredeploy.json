@@ -126,7 +126,7 @@
           "properties": {
             "RepoUrl": "[parameters('sourceCodeRepositoryURL')]",
             "branch": "[parameters('sourceCodeBranch')]",
-            "IsManualIntegration": "false"
+            "IsManualIntegration": "true"
           },
           "dependsOn": [
             "[resourceId('Microsoft.Web/sites/', variables('functionAppName'))]",
