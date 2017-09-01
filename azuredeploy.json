@@ -81,7 +81,7 @@
                     "appSettings": [
                         {
                             "name": "Project",
-                            "value" : "."
+                            "value" : "functionApp"
                         },
                         {
                             "name": "AzureWebJobsDashboard",
