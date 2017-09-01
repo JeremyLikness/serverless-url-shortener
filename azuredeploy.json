@@ -73,10 +73,16 @@
       "apiVersion": "2016-09-01",
       "name": "[variables('hostingPlanName')]",
       "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "Y1",
+        "tier": "Dynamic",
+        "size": "Y1",
+        "family": "Y",
+        "capacity": 0
+      },
       "properties": {
         "name": "[variables('hostingPlanName')]",
-        "computeMode": "Dynamic",
-        "sku": "Dynamic"
+        "computeMode": "Dynamic"
       }
     },
     {
@@ -88,10 +94,7 @@
       "properties": {
         "name": "[variables('functionAppName')]",
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
-        "clientAffinityEnabled": false,
-        "siteConfig": {
-          "AlwaysOn": true
-        }
+        "clientAffinityEnabled": false
       },
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
