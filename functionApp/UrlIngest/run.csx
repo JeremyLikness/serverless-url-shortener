@@ -59,7 +59,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, NextId
     {
         keyTable = new NextId
         {
-            PartitionKey = 1,
+            PartitionKey = "1",
             RowKey = "KEY",
             Id = 1024
         };
