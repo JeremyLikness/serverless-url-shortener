@@ -129,7 +129,8 @@
             "UTM_SOURCE": "[toLower(parameters('utmSource'))]",
             "FALLBACK_URL": "[toLower(parameters('fallbackUrl'))]",
             "FUNCTIONS_EXTENSION_VERSION": "~1",
-            "WEBSITE_NODE_DEFAULT_VERSION": "6.5.0"
+            "WEBSITE_NODE_DEFAULT_VERSION": "6.5.0",
+            "ROUTING_EXTENSION_VERSION": "~0.2"
           },
           "dependsOn": [
             "[resourceId('Microsoft.Web/sites', variables('functionAppName'))]",
