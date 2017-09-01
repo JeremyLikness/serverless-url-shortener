@@ -111,7 +111,7 @@
             "WEBSITE_NODE_DEFAULT_VERSION": "6.5.0"
           },
           "dependsOn": [
-            "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+            "[resourceId('Microsoft.Web/sites', variables('functionAppName'))]",
             "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
           ]
         },
