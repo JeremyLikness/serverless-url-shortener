@@ -1,4 +1,5 @@
-# Azure Functions App for URL Shortening 
+# Azure Functions App for URL Shortening
 
-Lorem ipsum ... etc.
+Description coming soon.
 
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/?repository=https://github.com/JeremyLikness/serverless-url-shortener)
