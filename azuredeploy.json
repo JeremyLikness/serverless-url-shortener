@@ -59,6 +59,19 @@
   },
   "resources": [
     {
+      "type": "microsoft.insights/components",
+      "apiVersion": "2015-05-01",
+      "name": "[parameters('appName')]",
+      "location": "South Central US",
+      "tags": {
+        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('functionAppName'))]": "Resource"
+      },
+      "properties": {
+        "ApplicationId": "[parameters('appName')]",
+        "Request_Source": "IbizaWebAppExtensionCreate"
+      }
+    },
+    {
       "type": "Microsoft.Storage/storageAccounts",
       "name": "[variables('storageAccountName')]",
       "apiVersion": "2016-01-01",
@@ -97,9 +110,9 @@
         "clientAffinityEnabled": false
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+        "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+        "[resourceId('microsoft.insights/components/', parameters('appName'))]"
       ],
-
       "resources": [
         {
           "type": "config",
@@ -111,6 +124,7 @@
             "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]",
             "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]",
             "WEBSITE_CONTENTSHARE": "[toLower(variables('functionAppName'))]",
+            "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(resourceId('microsoft.insights/components/', parameters('appName')), '2015-05-01').InstrumentationKey]",
             "SHORTENER_URL": "[toLower(variables('shortenerUrl'))]",
             "UTM_SOURCE": "[toLower(parameters('utmSource'))]",
             "FALLBACK_URL": "[toLower(parameters('fallbackUrl'))]",

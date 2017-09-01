@@ -54,6 +54,18 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, NextId
     {
         throw new Exception("Need a URL to shorten!");
     }
+
+    if (keyTable == null)
+    {
+        keyTable = new NextId
+        {
+            PartitionKey = 1,
+            RowKey = "KEY",
+            Id = 1024
+        };
+        var keyAdd = TableOperation.Insert(keyTable);
+        await tableOut.ExecuteAsync(keyAdd); 
+    }
     
     log.Info($"Current key: {keyTable.Id}"); 
     
