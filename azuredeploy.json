@@ -1,127 +1,135 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "appName": {
-            "type": "string",
-            "metadata": {
-                "description": "The name of the function app that you wish to create."
-            }
-        },
-        "fallbackUrl": {
-          "type": "string",
-          "defaultValue": "https://blog.jeremylikness.com/?utm_source=jelikness&utm_medium=github&utm_campaign=url_shortener",
-          "metadata" : {
-            "description" : "The URL to fallback to if the short URL is invalid or not found"
-          }
-        },
-        "utmSource": {
-          "type" : "string", 
-          "defaultValue": "jeliknes",
-          "metadata" : {
-            "description" : "UTM_SOURCE for appending to end of URL for tracking"
-          }
-        },
-        "storageAccountType": {
-            "type": "string",
-            "defaultValue": "Standard_LRS",
-            "allowedValues": [
-               "Standard_LRS",
-               "Standard_GRS",
-                "Standard_RAGRS",
-                "Standard_L"                
-            ],
-            "metadata": {
-                "description": "Storage Account type"
-            }
-        }
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the function app that you wish to create."
+      }
     },
-    "variables": {
-        "shortenerUrl": "[concat(parameters('appName'), '.azurewebsites.net/api/UrlRedirect/')]",
-        "functionAppName": "[parameters('appName')]",
-        "hostingPlanName": "[parameters('appName')]",
-        "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'azfunctions')]",
-        "storageAccountid": "[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]"
+    "fallbackUrl": {
+      "type": "string",
+      "defaultValue": "https://blog.jeremylikness.com/?utm_source=jelikness&utm_medium=github&utm_campaign=url_shortener",
+      "metadata": {
+        "description": "The URL to fallback to if the short URL is invalid or not found"
+      }
     },
-    "resources": [
-        {
-            "type": "Microsoft.Storage/storageAccounts",
-            "name": "[variables('storageAccountName')]",
-            "apiVersion": "2016-12-01",
-            "location": "[resourceGroup().location]",
-            "kind": "Storage",
-            "sku": {
-                "name": "[parameters('storageAccountType')]"
-            }
-        },
-        {
-            "type": "Microsoft.Web/serverfarms",
-            "apiVersion": "2015-04-01",
-            "name": "[variables('hostingPlanName')]",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "name": "[variables('hostingPlanName')]",
-                "computeMode": "Dynamic",
-                "sku": "Dynamic"
-            }
-        },
-        {
-            "apiVersion": "2015-08-01",
-            "type": "Microsoft.Web/sites",
-            "name": "[variables('functionAppName')]",
-            "location": "[resourceGroup().location]",
-            "kind": "functionapp",            
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
-                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
-            ],
-            "properties": {
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
-                "siteConfig": {
-                    "appSettings": [
-                        {
-                            "name": "Project",
-                            "value" : "functionApp"
-                        },
-                        {
-                            "name": "AzureWebJobsDashboard",
-                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
-                        },
-                        {
-                            "name": "AzureWebJobsStorage",
-                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
-                        },
-                        {
-                            "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
-                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
-                        },
-                        {
-                            "name": "WEBSITE_CONTENTSHARE",
-                            "value": "[toLower(variables('functionAppName'))]"
-                        },
-                      {
-                        "name": "SHORTENER_URL",
-                        "value": "[toLower(variables('shortenerUrl'))]"
-                      },
-                      {
-                        "name": "UTM_SOURCE", 
-                        "value" : "[toLower(parameters('utmSource'))]"
-                      },
-                      {
-                        "name" : "FALLBACK_URL",
-                        "value": "[toLower(parameters('fallbackUrl'))]"
-                      },
-                        {
-                            "name": "FUNCTIONS_EXTENSION_VERSION",
-                            "value": "~1"
-                        },
-                        {
-                            "name": "WEBSITE_NODE_DEFAULT_VERSION",
-                            "value": "6.5.0"
-                        }
-                    ]
-                }
-            }          
+    "utmSource": {
+      "type": "string",
+      "defaultValue": "jeliknes",
+      "metadata": {
+        "description": "UTM_SOURCE for appending to end of URL for tracking"
+      }
+    },
+    "storageAccountType": {
+      "type": "string",
+      "defaultValue": "Standard_LRS",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_GRS",
+        "Standard_RAGRS",
+        "Standard_L"
+      ],
+      "metadata": {
+        "description": "Storage Account type"
+      }
+    },
+    "sourceCodeRepositoryURL": {
+      "type": "string",
+      "defaultValue": "https://github.com/JeremyLikness/serverless-url-shortener",
+      "metadata": {
+        "description": "Source code repository URL"
+      }
+    },
+    "sourceCodeBranch": {
+      "type": "string",
+      "defaultValue": "master",
+      "metadata": {
+        "description": "Sourcecode Repo branch"
+      }
+    }
+  },
+  "variables": {
+    "shortenerUrl": "[concat(parameters('appName'), '.azurewebsites.net/api/UrlRedirect/')]",
+    "functionAppName": "[concat(parameters('appName'), '-function')]",
+    "hostingPlanName": "[concat(parameters('appName'), '-functionplan')]",
+    "storageAccountName": "[concat(parameters('appName'), concat('-functionstorage',uniquestring(resourceGroup().id)))]",
+    "storageAccountid": "[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[variables('storageAccountName')]",
+      "apiVersion": "2016-12-01",
+      "location": "[resourceGroup().location]",
+      "kind": "Storage",
+      "sku": {
+        "name": "[parameters('storageAccountType')]"
+      }
+    },
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2015-04-01",
+      "name": "[variables('hostingPlanName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "name": "[variables('hostingPlanName')]",
+        "computeMode": "Dynamic",
+        "sku": "Dynamic"
+      }
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "type": "Microsoft.Web/sites",
+      "name": "[variables('functionAppName')]",
+      "location": "[resourceGroup().location]",
+      "kind": "functionapp",
+      "properties": {
+        "name": "[variables('functionAppName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+        "clientAffinityEnabled": false,
+        "siteConfig": {
+          "AlwaysOn": true
         }
-    ]
+      },
+      "resources": [
+        {
+          "type": "config",
+          "name": "appsettings",
+          "apiVersion": "2015-08-01",
+          "properties": {
+            "Project": "functionApp",
+            "AzureWebJobsDashboard": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]",
+            "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]",
+            "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]",
+            "WEBSITE_CONTENTSHARE": "[toLower(variables('functionAppName'))]",
+            "SHORTENER_URL": "[toLower(variables('shortenerUrl'))]",
+            "UTM_SOURCE": "[toLower(parameters('utmSource'))]",
+            "FALLBACK_URL": "[toLower(parameters('fallbackUrl'))]",
+            "FUNCTIONS_EXTENSION_VERSION": "~1",
+            "WEBSITE_NODE_DEFAULT_VERSION": "6.5.0"
+          },
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+            "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
+          ]
+        },
+        {
+          "apiVersion": "2015-08-01",
+          "name": "web",
+          "type": "sourcecontrols",
+          "properties": {
+            "RepoUrl": "[parameters('sourceCodeRepositoryURL')]",
+            "branch": "[parameters('sourceCodeBranch')]",
+            "IsManualIntegration": "false"
+          },
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/sites/', variables('functionAppName'))]",
+            "[resourceId('Microsoft.Web/Sites/config', variables('functionAppName'), 'appsettings')]"
+          ]
+        }
+      ]
+    }
+  ]
 }
