@@ -8,11 +8,19 @@ This project leverages [Azure Resource Management Templates](https://jlik.me/6c)
 
 ## Getting Started
 
+This section is walkthrough to deploy and test the application. Click on the link below to watch a video that demonstrates the following steps.
+
+[Video Walk-through](https://www.youtube.com/watch?v=KmH1qqb4eF8)
+
 Simply click on the deploy button to get started. The first dialog prompts for information needed to generate the resources.
 
 ![Initial Form for Deploying to Azure](./images/deploy-short-selection.png)
 
 If you have multiple directories and subscriptions, choose the correct one. Pick a resource group and give your app a name. The fallback URL is the URL the service will redirect to when an invalid short URL is provided. The "UTM Source" is used for tagging social media campaigns. Both values will be updated to the application settings for the function app and may be changed at a later date. Choose the storage option (the default should be fine). Keep the default URL for the repository unless you forked the code for your own.
+
+>**Note**: sometimes the deployment may fail with a random error. If it does this, choose the option to try again. In my experience it will often succeed on the second try, especially if the error is related to source code (there appear to be some sporadic issues with fetching the code from GitHub).
+
+This is what a successful screen looks like:
 
 ![List of Deployment Steps](./images/deploy-short-manage.png)
 
