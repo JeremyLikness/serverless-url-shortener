@@ -72,6 +72,6 @@ Navigate to [http://localhost:8888](http://localhost:8888) to run the app.
 
 >**Important note about CORS**: in order for the function URL to be accessible from your local browser, it must be configured with a Cross-Origin Rresource Sharing (CORS) entry in the function app. Learn how to with this link: [How to manage a function app in the Azure portal](https://jlik.me/6d).
 
-Choose whether or not to add the configured source and redirect to the various mediums, then pastes the long URL and tap "Shorten" to generate the short URLs.
+Choose whether or not to add the configured source and redirect to the various mediums, then paste the long URL and tap "Shorten" to generate the short URLs.
 
 Follw me on Twitter: [@JeremyLikness](https://twitter.com/JeremyLikness)
