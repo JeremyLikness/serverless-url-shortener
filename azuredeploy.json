@@ -51,8 +51,8 @@
     }
   },
   "variables": {
-    "shortenerUrl": "[concat(parameters('appName'), '.azurewebsites.net/api/UrlRedirect/')]",
     "functionAppName": "[concat(parameters('appName'), '-function')]",
+    "shortenerUrl": "[concat(variables('functionAppName'), '.azurewebsites.net/')]",
     "hostingPlanName": "[concat(parameters('appName'), '-functionplan')]",
     "storageAccountName": "[concat('azfnstorage',uniquestring(resourceGroup().id))]",
     "storageAccountid": "[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]"
