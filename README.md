@@ -12,6 +12,8 @@ This section is walkthrough to deploy and test the application. Click on the lin
 
 [Video Walk-through](https://www.youtube.com/watch?v=KmH1qqb4eF8)
 
+> For a comprehensive explanation of the source code and how the application was built, read: [Build a Serverless Link Shortener with Analytics Faster than Finishing Your Latte](https://jlik.me/62).
+
 Simply click on the deploy button to get started. The first dialog prompts for information needed to generate the resources.
 
 ![Initial Form for Deploying to Azure](./images/deploy-short-selection.png)
