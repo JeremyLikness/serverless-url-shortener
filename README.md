@@ -1,6 +1,6 @@
 # Azure Functions App for URL Shortening
 
-This project represents a fully serverless implementation for a URL shortening utliity implemented with [Azure Functions](https://jlik.me/6a) and [Azure Table Storage](https://jlik.me/6b). The project as deployed will enable you to create short URLs and provides an endpoint for redirecting the short URL to the target URL. It uses proxies to allow redirection from the root of the domain.
+This project represents a fully serverless implementation for a URL shortening utility implemented with [Azure Functions](https://jlik.me/6a) and [Azure Table Storage](https://jlik.me/6b). The project as deployed will enable you to create short URLs and provides an endpoint for redirecting the short URL to the target URL. It uses proxies to allow redirection from the root of the domain.
 
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://jlik.me/50)
 
@@ -11,6 +11,8 @@ This project leverages [Azure Resource Management Templates](https://jlik.me/6c)
 This section is walkthrough to deploy and test the application. Click on the link below to watch a video that demonstrates the following steps.
 
 [Video Walk-through](https://www.youtube.com/watch?v=KmH1qqb4eF8)
+
+> For a comprehensive explanation of the source code and how the application was built, read: [Build a Serverless Link Shortener with Analytics Faster than Finishing Your Latte](https://jlik.me/62).
 
 Simply click on the deploy button to get started. The first dialog prompts for information needed to generate the resources.
 
