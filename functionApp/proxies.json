@@ -1,15 +1,21 @@
 {
     "$schema": "http://json.schemastore.org/proxies",
     "proxies": {
+        "Let's Encrypt Support" : {
+            "matchCondition": {
+                "route": "/.well-known/acme-challenge/{*code}"
+            },
+            "backendUri": "https://%WEBSITE_HOSTNAME%/api/LetsEncrypt/{code}"
+        },
         "Domain Redirect": {
             "matchCondition": {
-                "route": "/{*shortUrl}"
-            },
-            "backendUri": "http://%WEBSITE_HOSTNAME%/api/UrlRedirect/{shortUrl}"
+               "route": "/{*shortUrl}"
+           },
+           "backendUri": "http://%WEBSITE_HOSTNAME%/api/UrlRedirect/{shortUrl}"
         },
         "Api": {
-            "matchCondition": {
-                "route": "/api/{*path}"
+           "matchCondition": {
+              "route": "/api/{*path}"
             },
             "backendUri": "http://%WEBSITE_HOSTNAME%/api/{path}"
         }
