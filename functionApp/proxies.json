@@ -18,6 +18,12 @@
                 "route": "/api/{*path}"
             },
             "backendUri": "http://%WEBSITE_HOSTNAME%/api/{path}"
+        },
+        "Let's Encrypt Support" : {
+            "matchCondition": {
+                "route": "/.well-known/acme-challenge/{*rest}"
+            },
+            "backendUri": "https://%WEBSITE_HOSTNAME%/api/letsencrypt/{rest}"
         }
     }
 }
