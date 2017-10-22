@@ -5,19 +5,13 @@
             "matchCondition": {
                 "route": "/{*shortUrl}"
             },
-            "backendUri": "http://%WEBSITE_HOSTNAME%/api/UrlRedirect/{shortUrl}"
-        },
-        "Let's Encrypt Support" : {
-            "matchCondition": {
-                "route": "/.well-known/acme-challenge/{*rest}"
-            },
-            "backendUri": "https://%WEBSITE_HOSTNAME%/api/LetsEncryptSupport/{rest}"
+            "backendUri": "https://%WEBSITE_HOSTNAME%/api/UrlRedirect/{shortUrl}"
         },
         "Api": {
             "matchCondition": {
                 "route": "/api/{*path}"
             },
-            "backendUri": "http://%WEBSITE_HOSTNAME%/api/{path}"
+            "backendUri": "https://%WEBSITE_HOSTNAME%/api/{path}"
         },
         "Let's Encrypt Support" : {
             "matchCondition": {
