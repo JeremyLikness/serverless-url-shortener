@@ -5,7 +5,7 @@
       "name": "req",
       "type": "httpTrigger",
       "direction": "in",
-      "route": "LetsEncryptSupport/{code}"
+      "route": "LetsEncryptSupport/{rest}"
     },
     {
       "name": "$return",
