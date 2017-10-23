@@ -6,6 +6,8 @@ This project represents a fully serverless implementation for a URL shortening u
 
 This project leverages [Azure Resource Management Templates](https://jlik.me/6c) to make it easy to provision with a single click.
 
+> **NOTE**: this represents an early version of development. The latest source code is available in the [jlik.me repository](https://github.com/JeremyLikness/jlik.me). 
+
 ## Getting Started
 
 This section is walkthrough to deploy and test the application. Click on the link below to watch a video that demonstrates the following steps.
