@@ -1,17 +1,11 @@
 {
-    "$schema": "http://json.schemastore.org/proxies",
-    "proxies": {
-        "Domain Redirect": {
-            "matchCondition": {
-                "route": "/{*shortUrl}"
-            },
-            "backendUri": "http://%WEBSITE_HOSTNAME%/api/UrlRedirect/{shortUrl}"
-        },
-        "Api": {
-            "matchCondition": {
-                "route": "/api/{*path}"
-            },
-            "backendUri": "http://%WEBSITE_HOSTNAME%/api/{path}"
-        }
+  "$schema": "http://json.schemastore.org/proxies",
+  "proxies": {
+    "Domain Redirect": {
+      "matchCondition": {
+        "route": "/{shortUrl}"
+      },
+      "backendUri": "http://%WEBSITE_HOSTNAME%/api/UrlRedirect/{shortUrl}"
     }
+  }
 }
