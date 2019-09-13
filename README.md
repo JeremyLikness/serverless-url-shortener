@@ -2,6 +2,8 @@
 
 This project represents a fully serverless implementation for a URL shortening utility implemented with [Azure Functions](https://jlik.me/6a) and [Azure Table Storage](https://jlik.me/6b). The project as deployed will enable you to create short URLs and provides an endpoint for redirecting the short URL to the target URL. It uses proxies to allow redirection from the root of the domain.
 
+[![Free Azure Account](https://img.shields.io/badge/FREE-Azure-0077ff)](https://jlik.me/gmo) Get your [Free Azure Account](https://jlik.me/gmo)
+
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://jlik.me/50)
 
 This project leverages [Azure Resource Management Templates](https://jlik.me/6c) to make it easy to provision with a single click.
